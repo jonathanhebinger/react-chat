@@ -6,7 +6,7 @@ import { Logout } from './Logout';
 import { Room } from './Room';
 
 export default function App() {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState('Bob');
   const connected = user !== '';
 
   function handleLogout() {
@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <UserContext.Provider value={user}>
-      <div className="flex flex-col m-4 space-y-4 h-screen">
+      <div className="flex flex-col m-4 space-y-4 h-screen pb-20">
         {!connected && <Login onLogin={handleLogin} />}
         {connected && <Logout onLogout={handleLogout} />}
         {connected && <Room />}

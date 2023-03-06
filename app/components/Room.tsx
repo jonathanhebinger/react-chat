@@ -8,24 +8,29 @@ import { Message } from './Message';
 export function Room() {
   const user = useContext(UserContext);
 
-  const { addMessage, sortedMessages } = useMessage();
+  const { addMessage, messages } = useMessage();
 
   const [text, setText] = useState('');
 
   function handleSend() {
+    if (!text) return;
+
     const date = Date.now();
     const message = { user, text, date };
 
     addMessage(message);
+    setText('');
   }
 
-  const Messages = sortedMessages.map((message) => {
+  const Messages = messages.map((message) => {
     return <Message message={message} />;
   });
 
   return (
-    <div className="flex flex-col space-y-2 flex-grow">
-      <div className="flex-grow flex flex-col space-y-2">{Messages}</div>
+    <div className="flex flex-col space-y-2 flex-grow max-h-full">
+      <div className="flex-grow flex flex-col space-y-2 overflow-auto px-2">
+        {Messages}
+      </div>
       <div className="flex flex-col space-y-2">
         <textarea
           className={STYLE.INPUT}

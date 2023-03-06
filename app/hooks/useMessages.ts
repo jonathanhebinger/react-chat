@@ -13,12 +13,6 @@ import { IMessage } from '../types';
 export function useMessage() {
   const [messages, setMessages] = useState<IMessage[]>([]);
 
-  const sortedMessages = useMemo(() => {
-    return messages.sort((messageA, messageB) => {
-      return messageB.date - messageA.date;
-    });
-  }, [messages]);
-
   useEffect(() => {
     const messagesQuery = query(
       collection(db, 'messages'),
@@ -43,5 +37,5 @@ export function useMessage() {
     setMessages((messages) => [...messages, message]);
   }
 
-  return { messages, sortedMessages, addMessage };
+  return { messages, addMessage };
 }
