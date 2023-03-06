@@ -6,7 +6,7 @@ import { Logout } from './Logout';
 import { Room } from './Room';
 
 export default function App() {
-  const [user, setUser] = useState('Bob');
+  const [user, setUser] = useState('');
   const connected = user !== '';
 
   function handleLogout() {
