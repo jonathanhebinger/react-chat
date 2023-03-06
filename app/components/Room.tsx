@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext, useState } from 'react';
 import { UserContext } from '../contexts/userContext';
 import { useMessage } from '../hooks/useMessages';
+import { STYLE } from '../styles';
 import { Message } from './Message';
 
 export function Room() {
@@ -23,15 +24,15 @@ export function Room() {
   });
 
   return (
-    <div className="">
-      <div className="">{Messages}</div>
-      <div className="">
-        <input
-          className=""
+    <div className="flex flex-col space-y-2 flex-grow">
+      <div className="flex-grow flex flex-col space-y-2">{Messages}</div>
+      <div className="flex flex-col space-y-2">
+        <textarea
+          className={STYLE.INPUT}
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button className="" onClick={handleSend}>
+        <button className={STYLE.BUTTON} onClick={handleSend}>
           Envoyer
         </button>
       </div>

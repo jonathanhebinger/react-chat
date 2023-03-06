@@ -5,7 +5,7 @@ import {
   onSnapshot,
   orderBy,
   query,
-} from 'firebase/firestore/lite';
+} from 'firebase/firestore';
 import { useEffect, useMemo, useState } from 'react';
 import { db } from '../firebase';
 import { IMessage } from '../types';
@@ -27,13 +27,13 @@ export function useMessage() {
     );
 
     return onSnapshot(messagesQuery, (querySnapshot) => {
-      const messages: IMessage[] = [];
+      const messagesBuffer: IMessage[] = [];
 
       querySnapshot.forEach((doc) => {
         messages.push(doc.data() as IMessage);
       });
 
-      setMessages(messages);
+      setMessages((messages) => [...messages, ...messagesBuffer]);
     });
   }, []);
 

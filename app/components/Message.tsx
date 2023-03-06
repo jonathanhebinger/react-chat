@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../contexts/userContext';
+import { useTimeLabel } from '../hooks/useTimeLabel';
 import { IMessage } from '../types';
 
 export function Message({ message }: { message: IMessage }) {
-  const date = new Date(message.date);
-  const time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  const user = useContext(UserContext);
+  const time = useTimeLabel(message.date);
 
   return (
-    <div className="flex flex-col space-y-4 border rounded-lg">
-      <div className="flex space-x-4">
-        <div className="w-20">{time}</div>
-        <div className="">{message.user}</div>
+    <div className="flex flex-col">
+      <div className="flex justify-between text-blue-400 text-sm -mb-1">
+        <div className="">{message.user === user ? 'Vous' : message.user}</div>
+        <div className="">{time}</div>
       </div>
-      <div className="">{message.text}</div>
+      <div className="text-blue-900">{message.text}</div>
     </div>
   );
 }
