@@ -6,11 +6,11 @@ import {
   orderBy,
   query,
 } from 'firebase/firestore';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { db } from '../firebase';
 import { IMessage } from '../types';
 
-export function useMessage() {
+export function useMessages() {
   const [messages, setMessages] = useState<IMessage[]>([]);
 
   useEffect(() => {
@@ -31,10 +31,8 @@ export function useMessage() {
     });
   }, []);
 
-  async function addMessage(message: IMessage) {
-    await addDoc(collection(db, 'messages'), message);
-
-    setMessages((messages) => [...messages, message]);
+  function addMessage(message: IMessage) {
+    addDoc(collection(db, 'messages'), message);
   }
 
   return { messages, addMessage };

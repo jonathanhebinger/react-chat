@@ -1,30 +1,33 @@
 import React from 'react';
 import { useContext, useState } from 'react';
 import { UserContext } from '../contexts/userContext';
-import { useMessage } from '../hooks/useMessages';
+import { useMessages } from '../hooks/useMessages';
 import { STYLE } from '../styles';
+import { IMessage } from '../types';
 import { Message } from './Message';
 
 export function Room() {
   const user = useContext(UserContext);
-
-  const { addMessage, messages } = useMessage();
-
   const [text, setText] = useState('');
+
+  // TODO : récupérer la liste de message
+  // AIDE : récupérer les valeurs du custom hook "useMessages"
 
   function handleSend() {
     if (!text) return;
 
-    const date = Date.now();
-    const message = { user, text, date };
+    const message: IMessage = {
+      user,
+      text,
+      date: Date.now(),
+    };
 
-    addMessage(message);
-    setText('');
+    // TODO : ajouter le nouveau message
+    // TODO : réinitialiser le state "text"
   }
 
-  const Messages = messages.map((message) => {
-    return <Message message={message} />;
-  });
+  // TODO : transformer la liste "messages" en liste d'éléments JSX Message
+  const Messages = [];
 
   return (
     <div className="flex flex-col space-y-2 flex-grow max-h-full">

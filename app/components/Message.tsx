@@ -4,7 +4,8 @@ import { useTimeLabel } from '../hooks/useTimeLabel';
 import { IMessage } from '../types';
 
 export function Message({ message }: { message: IMessage }) {
-  const user = useContext(UserContext);
+  // TODO : récupérer la valeur "user" dans le context
+  const user = '';
   const time = useTimeLabel(message.date);
 
   return (

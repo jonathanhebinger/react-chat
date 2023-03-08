@@ -14,7 +14,8 @@ export function Login({ onLogin }: { onLogin: (user: string) => void }) {
   function handleLogin() {
     if (user.length >= 3) {
       setError(false);
-      onLogin(user);
+      // TODO : notifier le parent de la validation du nom d'utilisateur
+      // NOTE : utiliser la prop onLogin
     } else {
       setError(true);
     }
@@ -25,8 +26,11 @@ export function Login({ onLogin }: { onLogin: (user: string) => void }) {
       <input
         placeholder="User"
         className={STYLE.INPUT}
-        value={user}
-        onChange={(e) => setUser(e.target.value)}
+        // TODO : synchroniser le input et le state user
+        // TODO : compléter value et onChange
+        // NOTE : utiliser user, setUser et event.target.value
+        value={''}
+        onChange={(event) => null}
       />
       {error && Error}
       <button className={STYLE.BUTTON} onClick={handleLogin}>

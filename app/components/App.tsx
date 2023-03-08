@@ -7,7 +7,6 @@ import { Room } from './Room';
 
 export default function App() {
   const [user, setUser] = useState('');
-  const connected = user !== '';
 
   function handleLogout() {
     setUser('');
@@ -17,11 +16,14 @@ export default function App() {
   }
 
   return (
-    <UserContext.Provider value={user}>
+    /** TODO : renseigner la valeur du context User */
+    <UserContext.Provider value={''}>
       <div className="flex flex-col m-4 space-y-4 h-screen pb-20">
-        {!connected && <Login onLogin={handleLogin} />}
-        {connected && <Logout onLogout={handleLogout} />}
-        {connected && <Room />}
+        {/** TODO : afficher les éléments selon l'état de l'utilisateur */}
+        {/** AIDE : états possibles : connecté (user !== "") ou déconnecté */}
+        {true && <Login onLogin={handleLogin} />}
+        {false && <Logout onLogout={handleLogout} />}
+        {false && <Room />}
       </div>
     </UserContext.Provider>
   );
