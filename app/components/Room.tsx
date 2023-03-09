@@ -27,7 +27,9 @@ export function Room() {
   }
 
   // TODO : transformer la liste "messages" en liste d'éléments JSX Message
-  const Messages = [];
+  const Messages = [].map((message: IMessage) => {
+    return <Message message={message} key={message.user + message.date} />;
+  });
 
   return (
     <div className="flex flex-col space-y-2 flex-grow max-h-full">

@@ -23,7 +23,7 @@ export function Room() {
   }
 
   const Messages = messages.map((message) => {
-    return <Message message={message} />;
+    return <Message message={message} key={message.user + message.date} />;
   });
 
   return (
