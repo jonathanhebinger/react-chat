@@ -33,8 +33,6 @@ export function useMessage() {
 
   async function addMessage(message: IMessage) {
     await addDoc(collection(db, 'messages'), message);
-
-    setMessages((messages) => [...messages, message]);
   }
 
   return { messages, addMessage };
