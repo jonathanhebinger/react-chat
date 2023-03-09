@@ -24,7 +24,7 @@ export function useMessage() {
       const messagesBuffer: IMessage[] = [];
 
       querySnapshot.forEach((doc) => {
-        messages.push(doc.data() as IMessage);
+        messagesBuffer.push(doc.data() as IMessage);
       });
 
       setMessages((messages) => [...messages, ...messagesBuffer]);
